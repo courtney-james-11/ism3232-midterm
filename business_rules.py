@@ -1,3 +1,6 @@
+# business_rules.py
+# Author: Courtney James
+
 DISCOUNT_LOWER_THRESHOLD = 25
 DISCOUNT_UPPER_THRESHOLD = 99
 SERVICE_FEE_THRESHOLD = 500.00

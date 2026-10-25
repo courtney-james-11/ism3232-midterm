@@ -1,3 +1,6 @@
+# tests/test_business_rules.py
+# Author: Courtney James
+
 from business_rules import (
     calculate_event_total,
     calculate_food_cost,
