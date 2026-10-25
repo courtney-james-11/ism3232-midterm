@@ -1,3 +1,5 @@
+DISCOUNT_LOWER_THRESHOLD = 25
+DISCOUNT_UPPER_THRESHOLD = 99
 SERVICE_FEE_THRESHOLD = 500.00
 MANAGER_SIGNOFF_THRESHOLD = 2500.00
 SECOND_CHEF_GUEST_THRESHOLD = 80
@@ -11,11 +13,11 @@ def calculate_food_cost(guest_price: float, guests: int) -> float:
 
 def get_event_discount(guests: int, nonprofit: bool = False) -> float:
     """Returns the discount rate as a decimal, so 5% is 0.05"""
-    if guests < 25:
+    if guests < DISCOUNT_LOWER_THRESHOLD:
         return 0.0
-    elif guests <= 99:
+    elif guests <= DISCOUNT_UPPER_THRESHOLD:
         return 0.05
-    elif guests >= 100 and nonprofit:
+    elif guests > DISCOUNT_UPPER_THRESHOLD and nonprofit:
         return 0.12
     else:
         return 0.05
@@ -52,3 +54,25 @@ def total_booked(events: list) -> float:
             event["guest_price"], event["guests"], event["nonprofit"]
         )
     return event_totals
+
+
+def largest_event(events: list) -> str:
+    """Returns the client of the event with the largest event total"""
+    largest_event_total = 0
+    largest_client = ""
+    for event in events:
+        event_total = calculate_event_total(
+            event["guest_price"], event["guests"], event["nonprofit"]
+        )
+        if event_total > largest_event_total:
+            largest_event_total = event_total
+            largest_client = event["client"]
+
+    return largest_client
+
+
+def format_event_line(
+    client: str, total: float, signoff: bool, second_chef: bool
+) -> str:
+    """Returns one line of the report, such as Finch Law: $435.00 | sign-off: no | second chef: no"""
+    return f"{client}: ${total:.2f} | sign-off: {'yes' if signoff == True else 'no'} | second chef: {'yes' if second_chef == True else 'no'}"

@@ -1,7 +1,9 @@
 from business_rules import (
     calculate_event_total,
     calculate_food_cost,
+    format_event_line,
     get_event_discount,
+    largest_event,
     needs_second_chef,
     needs_signoff,
     total_booked,
@@ -69,3 +71,29 @@ def test_total_booked():
         },
     ]
     assert round(total_booked(events), 2) == 4691.00
+
+
+def test_largest_event():
+    events = [
+        {"client": "Finch Law", "guest_price": 18.00, "guests": 20, "nonprofit": False},
+        {
+            "client": "Garden Club",
+            "guest_price": 22.00,
+            "guests": 40,
+            "nonprofit": True,
+        },
+        {
+            "client": "Hilltop Gym",
+            "guest_price": 30.00,
+            "guests": 120,
+            "nonprofit": False,
+        },
+    ]
+    assert largest_event(events) == "Hilltop Gym"
+
+
+def test_format_event_line():
+    assert (
+        format_event_line("Finch Law", 435.00, False, False)
+        == "Finch Law: $435.00 | sign-off: no | second chef: no"
+    )
