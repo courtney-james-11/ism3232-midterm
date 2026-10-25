@@ -1,5 +1,7 @@
 SERVICE_FEE_THRESHOLD = 500.00
 MANAGER_SIGNOFF_THRESHOLD = 2500.00
+SECOND_CHEF_GUEST_THRESHOLD = 80
+SECOND_CHEF_TOTAL_THRESHOLD = 3000.00
 
 
 def calculate_food_cost(guest_price: float, guests: int) -> float:
@@ -35,3 +37,18 @@ def calculate_event_total(
 def needs_signoff(total: float) -> bool:
     """Returns True when the event total needs a manager's sign-off, otherwise false"""
     return total > MANAGER_SIGNOFF_THRESHOLD
+
+
+def needs_second_chef(guests: int, total: float) -> bool:
+    """Returns True when the event needs a second chef, otherwise false"""
+    return guests > SECOND_CHEF_GUEST_THRESHOLD or total >= SECOND_CHEF_TOTAL_THRESHOLD
+
+
+def total_booked(events: list) -> float:
+    """Returns the sum of the event totals for every event in the list"""
+    event_totals = 0
+    for event in events:
+        event_totals += calculate_event_total(
+            event["guest_price"], event["guests"], event["nonprofit"]
+        )
+    return event_totals

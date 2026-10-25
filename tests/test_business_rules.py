@@ -2,7 +2,9 @@ from business_rules import (
     calculate_event_total,
     calculate_food_cost,
     get_event_discount,
+    needs_second_chef,
     needs_signoff,
+    total_booked,
 )
 
 
@@ -40,3 +42,30 @@ def test_needs_signoff_true():
 
 def test_needs_signoff_false():
     assert needs_signoff(2500.00) == False
+
+
+def test_needs_second_chef_true_guests():
+    assert needs_second_chef(100, 2000.00) == True
+
+
+def test_needs_second_chef_true_total():
+    assert needs_second_chef(50, 3000.00) == True
+
+
+def test_total_booked():
+    events = [
+        {"client": "Finch Law", "guest_price": 18.00, "guests": 20, "nonprofit": False},
+        {
+            "client": "Garden Club",
+            "guest_price": 22.00,
+            "guests": 40,
+            "nonprofit": True,
+        },
+        {
+            "client": "Hilltop Gym",
+            "guest_price": 30.00,
+            "guests": 120,
+            "nonprofit": False,
+        },
+    ]
+    assert round(total_booked(events), 2) == 4691.00
