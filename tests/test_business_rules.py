@@ -18,16 +18,28 @@ def test_get_event_discount_none():
     assert get_event_discount(10) == 0.0
 
 
+def test_get_event_discount_5_limit():
+    assert get_event_discount(25) == 0.05
+
+
 def test_get_event_discount_5():
-    assert get_event_discount(50) == 0.05
+    assert get_event_discount(99) == 0.05
 
 
 def test_get_event_discount_12():
     assert get_event_discount(150, nonprofit=True) == 0.12
 
 
-def test_get_event_discount_100_guests_fp():
+def test_get_event_discount_12_limit():
+    assert get_event_discount(100, nonprofit=True) == 0.12
+
+
+def test_get_event_discount_limit_guests_fp():
     assert get_event_discount(100) == 0.05
+
+
+def test_get_event_discount_upper_fp():
+    assert get_event_discount(150) == 0.05
 
 
 def test_calculate_event_total_no_service_fee():
@@ -42,16 +54,28 @@ def test_needs_signoff_true():
     assert needs_signoff(3500.00) == True
 
 
-def test_needs_signoff_false():
+def test_needs_signoff_false_limit():
     assert needs_signoff(2500.00) == False
 
 
-def test_needs_second_chef_true_guests():
+def test_needs_signoff_false():
+    assert needs_signoff(2000.00) == False
+
+
+def test_needs_second_chef_guests_true():
     assert needs_second_chef(100, 2000.00) == True
 
 
-def test_needs_second_chef_true_total():
+def test_needs_second_chef_guests_false_limit():
+    assert needs_second_chef(80, 2000.00) == False
+
+
+def test_needs_second_chef_total_true_limit():
     assert needs_second_chef(50, 3000.00) == True
+
+
+def test_needs_second_chef_total_false():
+    assert needs_second_chef(50, 2000.00) == False
 
 
 def test_total_booked():
