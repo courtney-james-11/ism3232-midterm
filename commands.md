@@ -6,7 +6,6 @@ cd ~/ism3232
 mkdir -p ism3232-midterm
 cd ~/ism3232/ism3232-midterm
 pwd
-output: /home/courtneyjames/ism3232/ism3232-midterm
 python3 -m venv .venv
 source .venv/bin/activate
 pip install pytest ruff
@@ -94,7 +93,7 @@ business_rules.py defines 8 functions and tests/test_business_rules.py defines 2
 main.py
 commands.md
 
-main.py and commands.md prints, but business_rules.py does not because it has not output and only contains functions to be called upon in main.py.
+main.py and commands.md prints, but business_rules.py does not because it has no output and only contains functions to be called upon in main.py.
 
 ## 6. The commit history
 (.venv) Simon-Laptop% git log --oneline
