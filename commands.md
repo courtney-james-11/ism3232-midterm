@@ -96,9 +96,10 @@ business_rules.py defines 8 functions and tests/test_business_rules.py defines 2
 ```
 (.venv) Simon-Laptop% rg -l 'print'
 ```
+```
 main.py
 commands.md
-
+```
 main.py and commands.md prints, but business_rules.py does not because it has no output and only contains functions to be called upon in main.py.
 
 ## 6. The commit history
