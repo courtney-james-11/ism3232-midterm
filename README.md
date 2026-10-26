@@ -6,7 +6,7 @@
 
 ## What This Program Does
 
-This program genrates a event report for Harvest Table Catering. Based on individual event data, the program calculates the total individual event cost and uses that informatation to report the total amount booked, average event total, client with the largetst event total, and  how many manager sign-offs or second chefs were needed.
+This program generates an event report for Harvest Table Catering. Based on individual event data, the program calculates the total individual event cost and uses that informatation to report the total amount booked, average event total, client with the largetst event total, and  how many manager sign-offs or second chefs were needed.
 
 ## Business Rules
 
