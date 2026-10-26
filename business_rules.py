@@ -61,6 +61,8 @@ def total_booked(events: list) -> float:
 
 def largest_event(events: list) -> str:
     """Returns the client of the event with the largest event total"""
+    if events == "":
+        return ""
     largest_event_total = 0
     largest_client = ""
     for event in events:

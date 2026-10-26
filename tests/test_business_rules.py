@@ -119,6 +119,24 @@ def test_largest_event():
     assert largest_event(events) == "Hilltop Gym"
 
 
+def test_largest_event_tie():
+    events = [
+        {"client": "Finch Law", "guest_price": 18.00, "guests": 20, "nonprofit": False},
+        {
+            "client": "Garden Club",
+            "guest_price": 18.00,
+            "guests": 20,
+            "nonprofit": False,
+        },
+    ]
+    assert largest_event(events) == "Finch Law"
+
+
+def test_largest_event_empty():
+    events = []
+    assert largest_event(events) == ""
+
+
 def test_format_event_line():
     assert (
         format_event_line("Finch Law", 435.00, False, False)
