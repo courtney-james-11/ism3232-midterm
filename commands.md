@@ -1,7 +1,7 @@
 # Terminal Record: Harvest Table Catering
 
 ## 1. Building the project
-
+```
 cd ~/ism3232
 mkdir -p ism3232-midterm
 cd ~/ism3232/ism3232-midterm
@@ -21,18 +21,21 @@ touch tests/__init__.py tests/test_business_rules.py
 git remote add origin https://github.com/courtney-james-11/ism3232-midterm
 git branch -M main
 git push -u origin main
-
+```
 ## 2. The virtual environment
-
+```
 (.venv) Simon-Laptop% which python3
-
+```
+```
 /home/courtneyjames/ism3232/ism3232-midterm/.venv/bin/python3
-
+```
 After running which python3, I know the virtual environment is active because the output ends in .venv/bin/python3
 
 ## 3. The project structure
-
+```
 (.venv) Simon-Laptop% tree -L 2
+```
+```
 .
 ├── README.md
 ├── __pycache__
@@ -45,12 +48,23 @@ After running which python3, I know the virtual environment is active because th
     ├── __init__.py
     ├── __pycache__
     └── test_business_rules.py
-
+```
 The __pycache__ folder is on my computer but not my github repository because it is listed in my .gitignore file, preventing it from showing up on github.
 
 ## 4. Every function and test
-
+```
 (.venv) Simon-Laptop% rg 'def '
+```
+```
+business_rules.py
+12:def calculate_food_cost(guest_price: float, guests: int) -> float:
+17:def get_event_discount(guests: int, nonprofit: bool = False) -> float:
+29:def calculate_event_total(
+42:def needs_signoff(total: float) -> bool:
+47:def needs_second_chef(guests: int, total: float) -> bool:
+52:def total_booked(events: list) -> float:
+62:def largest_event(events: list) -> str:
+79:def format_event_line(
 
 tests/test_business_rules.py
 16:def test_calculate_food_cost():
@@ -72,38 +86,35 @@ tests/test_business_rules.py
 80:def test_needs_second_chef_total_false():
 84:def test_total_booked():
 103:def test_largest_event():
-122:def test_format_event_line():
-
-business_rules.py
-12:def calculate_food_cost(guest_price: float, guests: int) -> float:
-17:def get_event_discount(guests: int, nonprofit: bool = False) -> float:
-29:def calculate_event_total(
-42:def needs_signoff(total: float) -> bool:
-47:def needs_second_chef(guests: int, total: float) -> bool:
-52:def total_booked(events: list) -> float:
-62:def largest_event(events: list) -> str:
-77:def format_event_line(
-
-business_rules.py defines 8 functions and tests/test_business_rules.py defines 20.
+122:def test_largest_event_tie():
+135:def test_largest_event_empty():
+140:def test_format_event_line():
+```
+business_rules.py defines 8 functions and tests/test_business_rules.py defines 22.
 
 ## 5. Which files print
-
+```
 (.venv) Simon-Laptop% rg -l 'print'
-
+```
 main.py
 commands.md
 
 main.py and commands.md prints, but business_rules.py does not because it has no output and only contains functions to be called upon in main.py.
 
 ## 6. The commit history
+```
 (.venv) Simon-Laptop% git log --oneline
+```
 
-36b961c (HEAD -> main, origin/main) added comments to the top of rules, main, and test files
+```37b2c05 (HEAD -> main, origin/main) added 2 more pytest and fixed largest event function for empty list
+1020eab wrote and completed the README.md file
+5b82ad9 wrote and completed commands.md
+36b961c added comments to the top of rules, main, and test files
 057229c wrote and tested 6 more pytest to file
 3e1173d wrote and tested output of main.py
 66778fa wrote and tested functions 7 and 8
 6a6925f wrote and tested functions 5 and 6
 4180ac2 wrote and tested functions 3 and 4
-2629933 wrote and tested functions 1 and 2
+2629933 wrote and tested functions 1 and 2```
 
-There are 7 commits at this point. I still need to commit this file and the readme file to make a total of 9.
+There are 10 commits at this point.

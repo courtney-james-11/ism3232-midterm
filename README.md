@@ -18,20 +18,20 @@ This program genrates a event report for Harvest Table Catering. Based on indivi
 6. If an event has more than 80 guests or an event total of $3000 or more, a second chef is required.
 
 ## How to Run
-
+```
 python3 -m venv .venv
 source .venv/bin/activate
 pip install pytest ruff
 pip freeze > requirements.txt
 python3 main.py
-
+```
 ## How to Test
-
+```
 ruff format .
 ruff check .
 pytest -v
-
-20 tests were written for this program.
+```
+22 tests were written for this program.
 
 ## Files in This Repository
 
